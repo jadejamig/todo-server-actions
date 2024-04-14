@@ -5,7 +5,12 @@ import DeleteForm from "./delete-form";
 import ItemCheckbox from "./item-checkbox";
 
 export default async function Home() {
-  const todos = await prisma.todo.findMany();
+  const todos = await prisma.todo.findMany({
+    orderBy: {
+      createdAt: 'asc'
+    }
+  });
+
   const date = await getDate();
 
   return (
